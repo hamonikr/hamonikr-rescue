@@ -1,0 +1,10 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Exec=gnome-terminal -e '/bin/hamonikr_live_rescue.sh'
+Icon=deja-dup
+Type=Application
+Categories=System
+StartupNotify=true
+Name=HamoniKR
+Comment=HamoniKR
+NoDisplay=true

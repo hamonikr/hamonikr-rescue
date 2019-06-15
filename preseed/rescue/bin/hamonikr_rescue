@@ -1,0 +1,40 @@
+#!/bin/bash
+# echo "HamoniKR Rescue mode를 정의합니다."
+# grub.cfg의 default 값을 수정하여 각각의 mode로 부팅할 수 있도록한다.
+
+# hamonikr_rescue_mode 명령의 인자값을 받아, grub.cfg의 순서를 변경
+# cf) $ hamonikr_rescue backup
+
+if [ "$1" != "install" ] && [ "$1" != "backup" ] && [ "$1" != "restore" ] && [ "$1" != "server" ] && [ "$1" != "client" ] && [ "$1" != "Start" ] ; then
+        echo "$ $0 [install|backup|restore|server|client]"
+        exit 0
+else
+        echo "++++++++++++++++++++"
+        echo "$1 starting..."
+        echo "++++++++++++++++++++"
+        sleep 1
+        # grub을 초기화한다.
+        sudo update-grub
+	# grub 설정에서 인수값을 parsing하고, grub.cfg의 default 값을 변경한다.
+        GRUB_MINUS=3
+	GRUB_DEFAULT=0
+        ACTION=$1
+
+	if [ "$1" != "Start" ] ; then
+	        GRUB_ACTION=`grep -E 'menuentry.*{$' /boot/grub/grub.cfg |grep -n menuentry |grep $ACTION | awk -F: '{print $1}'`
+        	GRUB_RESULT=`expr $GRUB_ACTION - $GRUB_MINUS`
+        	sudo sed -i '/set default="."/s/set default="."/set default="'$GRUB_RESULT'"/g' /boot/grub/grub.cfg
+	else
+		#GRUB_ACTION=`grep -E 'menuentry.*{$' /boot/grub/grub.cfg |grep -n menuentry |grep $ACTION | awk -F: '{print $1}'`
+                #GRUB_RESULT=`expr $GRUB_ACTION - $GRUB_DEFAULT`
+		sudo sed -i '/set default="."/s/set default="."/set default="'$GRUB_DEFAULT'"/g' /boot/grub/grub.cfg
+	fi
+fi
+
+# reboot
+echo "+++++++++++++++++++++++++++++++++++++++++"
+echo "5초 후 시스템을 재부팅 합니다."
+echo "재부팅 후 $1 관련 작업이 진행됩니다."
+echo "+++++++++++++++++++++++++++++++++++++++++"
+sleep 5
+sudo reboot
