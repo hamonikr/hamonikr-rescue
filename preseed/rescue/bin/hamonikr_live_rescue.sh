@@ -1,4 +1,8 @@
 #!/bin/bash
+# Backup and Restore Program for HamoniKR Desktop Linux (HamoniKR)
+# Copyright (C) 2015-2019 HamoniKR Team, Kevin Kim
+# This file may be used under the terms of the GNU General Public License, version 2 or later.
+# For more details see: https://www.gnu.org/licenses/gpl-2.0.html
 
 # rescue check
 RESCUE_CHECK=`cat /proc/cmdline | awk '{print $9}'`

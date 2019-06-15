@@ -1,4 +1,9 @@
 #!/bin/bash
+# Backup and Restore Program for HamoniKR Desktop Linux (HamoniKR)
+# Copyright (C) 2015-2019 HamoniKR Team, Kevin Kim
+# This file may be used under the terms of the GNU General Public License, version 2 or later.
+# For more details see: https://www.gnu.org/licenses/gpl-2.0.html
+
 # preseed/late_command 미동작 시, 본 script 수동 실행
 # /rescue 존재 유무 확인
 RESCUE=`sed -n '/rescue/p' /target/etc/fstab | sed -n '/UUID/p' | awk '{ print $2 }'`
