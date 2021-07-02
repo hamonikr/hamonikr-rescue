@@ -6,6 +6,13 @@
 
 [주의] 이 프로그램은 시스템에 설치해서 사용하는 것이 아니라, ISO 이미지를 생성하는 단계에서 사용하는 프로그램입니다.
 
+## workflow
+
+![workflow](hamonikr-rescue.png)
+
+- image src : https://app.creately.com/diagram/L7iKmJe27gO/edit
+
+
 # License
 
 GPL 2.0
